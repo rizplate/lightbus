@@ -1,0 +1,785 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="RPC & event system for Python 3">
+      
+      
+        <link rel="canonical" href="http://lightbus.org/quick-start/">
+      
+      
+        <meta name="author" content="Adam Charnock">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.1">
+    
+    
+      
+        <title>Quick start - Lightbus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#requirements" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://lightbus.org" title="Lightbus" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Lightbus
+              </span>
+              <span class="md-header-nav__topic">
+                Quick start
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/adamcharnock/lightbus/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Lightbus
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/adamcharnock/lightbus/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Quick start
+      </label>
+    
+    <a href="./" title="Quick start" class="md-nav__link md-nav__link--active">
+      Quick start
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-lesson" title="Anatomy lesson" class="md-nav__link">
+    Anatomy lesson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-your-api" title="Define your API" class="md-nav__link">
+    Define your API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-procedure-calls" title="Remote procedure calls" class="md-nav__link">
+    Remote procedure calls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" title="Events" class="md-nav__link">
+    Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" title="Further reading" class="md-nav__link">
+    Further reading
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../worked-example/" title="Worked example" class="md-nav__link">
+      Worked example
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../apis/" title="APIs" class="md-nav__link">
+      APIs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rpcs/" title="Remote prcedure calls" class="md-nav__link">
+      Remote prcedure calls
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events" class="md-nav__link">
+      Events
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../schema/" title="Schema" class="md-nav__link">
+      Schema
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../transports/" title="Transports" class="md-nav__link">
+      Transports
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../command-line-use/" title="Command line use" class="md-nav__link">
+      Command line use
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-lesson" title="Anatomy lesson" class="md-nav__link">
+    Anatomy lesson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-your-api" title="Define your API" class="md-nav__link">
+    Define your API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-procedure-calls" title="Remote procedure calls" class="md-nav__link">
+    Remote procedure calls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" title="Events" class="md-nav__link">
+    Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" title="Further reading" class="md-nav__link">
+    Further reading
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/adamcharnock/lightbus/edit/master/docs/quick-start.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Quick start</h1>
+                
+                <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<p>Before continuing, ensure you have completed the following steps detailed in 
+the <a href="../installation/">installation section</a>:</p>
+<ul>
+<li>Installed Python 3.6 or above</li>
+<li>Installed Lightbus</li>
+<li>Running a Redis server (built from the Redis unstable branch)</li>
+</ul>
+<h2 id="anatomy-lesson">Anatomy lesson<a class="headerlink" href="#anatomy-lesson" title="Permanent link">&para;</a></h2>
+<p>When using Lightbus you will still run your various services
+as normal. For web-based software this will likely include one or more
+processes to handle web traffic (e.g. Django, Flask).
+You may or may not also have some other processes running for other purposes.  </p>
+<p>In addition to this, Lightbus will have its own process started via 
+<code>lightbus run</code>.</p>
+<p>While the roles of these processes are not strictly defined, in most
+circumstances their use should break down as follows:</p>
+<ul>
+<li><strong>Lightbus processes</strong> – Respond to remote procedure calls, listen for 
+  and handle events.</li>
+<li><strong>Other processes (web etc)</strong> – Perform remote procedure calls, fire events</li>
+</ul>
+<p>The starting point for the lightbus process is a <code>bus.py</code> file. You 
+should create this in your project root.</p>
+<h2 id="define-your-api">Define your API<a class="headerlink" href="#define-your-api" title="Permanent link">&para;</a></h2>
+<p>First we will define the API the lightbus will serve. 
+Create the following in a <code>bus.py</code> file:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># bus.py</span>
+<span class="kn">from</span> <span class="nn">lightbus</span> <span class="k">import</span> <span class="n">Api</span>
+
+
+<span class="k">class</span> <span class="nc">AuthApi</span><span class="p">(</span><span class="n">Api</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;auth&#39;</span>
+
+    <span class="k">def</span> <span class="nf">check_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">username</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span> <span class="ow">and</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">&#39;secret&#39;</span>
+</pre></div>
+
+<p>You should now be able to startup Lightbus as follows:</p>
+<div class="codehilite"><pre><span></span>lightbus run
+</pre></div>
+
+<p>Lightbus will output some logging data which will include a list of 
+APIs in its registry, including your new <code>auth</code> API:</p>
+<p><img alt="lightbus run output" src="../static/images/quickstart-lightbus-run.png" /></p>
+<p>Leave Lightbus running and open a new terminal window for the next stage. </p>
+<h2 id="remote-procedure-calls">Remote procedure calls<a class="headerlink" href="#remote-procedure-calls" title="Permanent link">&para;</a></h2>
+<p>With Lightbus running, open a new terminal window and create a file named 
+<code>call_procedure.py</code> in the same directory as your <code>bus.py</code>. The 
+<code>call_procedure.py</code> file name is arbitrary, it simply allows us to 
+experiment with accessing the bus.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># call_procedure.py</span>
+<span class="kn">import</span> <span class="nn">lightbus</span>
+
+<span class="c1"># Create a bus object</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">lightbus</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+
+<span class="c1"># Call the check_password() procedure on our auth API</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">check_password</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;secret&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Show the result</span>
+<span class="k">if</span> <span class="n">valid</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Password valid!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Oops, bad username or password&#39;</span><span class="p">)</span>
+</pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>Events allow services to broadcast a message to any other services that 
+care to listen. Events are fired by the service which 'owns' the API and 
+received by any Lightbus service, which can include the owning service itself
+(as we do below).</p>
+<p>The owning service can be more accurately referred to as the 
+<em>authoritative service</em>. The authoritative service is the service 
+which contains the class definition within its codebase. Lightbus only 
+allows the authoritative service to fire events for an API. Any service can 
+listen for any event.</p>
+<p>We will talk more about this in <a href="../concepts/">concepts</a>. For now let's look 
+at some code. Below we modify our <code>AuthApi</code> in <code>bus.py</code> to add a <code>user_registered</code> 
+event. We also use the <code>before_server_start()</code> hook to setup a listener for 
+that event:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># bus.py</span>
+<span class="kn">from</span> <span class="nn">lightbus</span> <span class="k">import</span> <span class="n">Api</span><span class="p">,</span> <span class="n">Event</span>
+
+<span class="k">class</span> <span class="nc">AuthApi</span><span class="p">(</span><span class="n">Api</span><span class="p">):</span>
+    <span class="n">user_registered</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;auth&#39;</span>
+
+    <span class="k">def</span> <span class="nf">check_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">username</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span> <span class="ow">and</span> <span class="n">password</span> <span class="o">==</span> <span class="s1">&#39;secret&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">before_server_start</span><span class="p">(</span><span class="n">bus</span><span class="p">):</span>
+    <span class="c1"># before_server_start() is called on lightbus startup, </span>
+    <span class="c1"># this allows you to setup your listeners.</span>
+
+    <span class="c1"># Call send_welcome_email() when we receive the user_registered event</span>
+    <span class="n">bus</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">user_registered</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">send_welcome_email</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">send_welcome_email</span><span class="p">(</span><span class="n">api_name</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="c1"># In our example we&#39;ll just print something to the console,</span>
+    <span class="c1"># rather than send an actual email</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Subject: Welcome to our site, </span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;To: </span><span class="si">{email}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+<p>Now create <code>fire_event.py</code>, this will fire the event on the bus. 
+As with the previous example, this file name is arbitrary.
+In a real-world scenario this code may live in your web application's 
+user registration success handler. </p>
+<div class="codehilite"><pre><span></span><span class="c1"># fire_event.py</span>
+<span class="kn">import</span> <span class="nn">lightbus</span>
+
+<span class="c1"># Import the AuthApi to make it available to Lightbus</span>
+<span class="kn">from</span> <span class="nn">.bus</span> <span class="k">import</span> <span class="n">AuthApi</span>
+
+<span class="c1"># Create a bus object</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">lightbus</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+
+<span class="c1"># Fire the event. There is no return value when firing events</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">user_registered</span><span class="o">.</span><span class="n">fire</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+    <span class="n">email</span><span class="o">=</span><span class="s1">&#39;admin@example.com&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>There a two important differences here:</p>
+<ol>
+<li>We call <code>bus.auth.user_registered.fire()</code> to fire the <code>user_registered</code> event on 
+   the <code>auth</code> API. This will place the event onto the bus to be consumed any 
+   listening services. </li>
+<li>We import the <code>AuthApi</code> class. This registers it with Lightbus, thereby indicating 
+   we are the authoritative service for this API and can therefore fire events upon it.</li>
+</ol>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<p>This quickstart has covered the basics of Lightbus, and has hopefully given you a 
+good starting point. Reading through the remainder of this documentation should give you 
+a wider awareness of the features available and underlying concepts.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../installation/" title="Installation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Installation
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../concepts/" title="Concepts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Concepts
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8eb9be28.js"></script>
+      
+      <script>app.initialize({version:"0.17.3",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-103655163-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
