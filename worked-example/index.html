@@ -708,7 +708,7 @@ see the store. You will need to run each of these in a separate terminal window:
 image/       store/
 
 <span class="c1"># Start our image resizing service</span>
-$ lightbus run --bus<span class="o">=</span>image/bus.py
+$ lightbus run --bus<span class="o">=</span>image.bus
 
 <span class="c1"># Start our store&#39;s web interface</span>
 $ <span class="nv">FLASK_APP</span><span class="o">=</span>store/web.py flask run --port<span class="o">=</span><span class="m">5001</span>
@@ -833,13 +833,13 @@ dashboard/web.py
 dashboard/    image/    store/
 
 <span class="c1"># Image resizer</span>
-$ lightbus run --bus<span class="o">=</span>image/bus.py
+$ lightbus run --bus<span class="o">=</span>image.bus
 
 <span class="c1"># Store</span>
 $ <span class="nv">FLASK_APP</span><span class="o">=</span>store/web.py flask run --port<span class="o">=</span><span class="m">5001</span>
 
 <span class="c1"># Dashboard</span>
-$ lightbus run --bus<span class="o">=</span>dashboard/bus.py
+$ lightbus run --bus<span class="o">=</span>dashboard.bus
 $ <span class="nv">FLASK_APP</span><span class="o">=</span>dashboard/web.py flask run --port<span class="o">=</span><span class="m">5000</span>
 </pre></div>
 
@@ -847,9 +847,9 @@ $ <span class="nv">FLASK_APP</span><span class="o">=</span>dashboard/web.py flas
 will the <code>honcho</code> tool we installed earlier. First, create
 a file called <code>Procfile</code>:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Procfile</span>
-image_resizer_bus: lightbus run --bus<span class="o">=</span>image/bus.py
+image_resizer_bus: lightbus run --bus<span class="o">=</span>image.bus
 store_web:         <span class="nv">FLASK_APP</span><span class="o">=</span>store/web.py flask run --port<span class="o">=</span><span class="m">5001</span>
-dashboard_bus:     lightbus run --bus<span class="o">=</span>dashboard/bus.py
+dashboard_bus:     lightbus run --bus<span class="o">=</span>dashboard.bus
 dashboard_web:     <span class="nv">FLASK_APP</span><span class="o">=</span>dashboard/web.py flask run --port<span class="o">=</span><span class="m">5000</span>
 </pre></div>
 
@@ -962,7 +962,7 @@ Flask which we used earlier.</p>
 dashboard process along with the existing image resizer and store services:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Procfile_combined</span>
 
-image_resizer_bus: lightbus run --bus<span class="o">=</span>image/bus.py
+image_resizer_bus: lightbus run --bus<span class="o">=</span>image.bus
 store_web: <span class="nv">FLASK_DEBUG</span><span class="o">=</span><span class="m">1</span> <span class="nv">FLASK_APP</span><span class="o">=</span>store/web.py flask run --port<span class="o">=</span><span class="m">5001</span>
 <span class="hll">dashboard_combined: python dashboard/combined.py
 </span></pre></div>
