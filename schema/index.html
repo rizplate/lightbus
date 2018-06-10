@@ -449,6 +449,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dataclasses" title="Dataclasses" class="md-nav__link">
+    Dataclasses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#classes" title="Classes" class="md-nav__link">
     Classes
   </a>
@@ -633,6 +640,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dataclasses" title="Dataclasses" class="md-nav__link">
+    Dataclasses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#classes" title="Classes" class="md-nav__link">
     Classes
   </a>
@@ -673,7 +687,7 @@
                   <h1>Schema</h1>
                 
                 <p>Lightbus processes automatically generate and share schemas for their available APIs.
-These schemes can be used to validate the following: </p>
+These schemes can be used to validate the following:</p>
 <ul>
 <li>Remote procedure call parameters</li>
 <li>Remote procedure call return values</li>
@@ -682,9 +696,9 @@ These schemes can be used to validate the following: </p>
 <p>These schemas are shared using the configured <code>SchemaTransprt</code> (Redis, by default).
 Each Lightbus process will monitor for any schema changes.</p>
 <h2 id="specifying-types">Specifying types<a class="headerlink" href="#specifying-types" title="Permanent link">&para;</a></h2>
-<p>Lightbus will create a schema by inspecting the parameters 
-and <a href="https://docs.python.org/3/library/typing.html">type hints</a> of your APIs' events and procedures. </p>
-<p>You can use the schema functionality without type hints, but the level of validation 
+<p>Lightbus will create a schema by inspecting the parameters
+and <a href="https://docs.python.org/3/library/typing.html">type hints</a> of your APIs' events and procedures.</p>
+<p>You can use the schema functionality without type hints, but the level of validation
 provided will be limited to ensuring parameter names match what is expected.</p>
 <p>Take the following API as an example:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">lightbus</span> <span class="k">import</span> <span class="n">Api</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">Parameter</span>
@@ -710,10 +724,10 @@ provided will be limited to ensuring parameter names match what is expected.</p>
 <div class="codehilite"><pre><span></span>$ lightbus dumpschema
 </pre></div>
 
-<p>This will dump out the auto-generated schema for the above API. See 
+<p>This will dump out the auto-generated schema for the above API. See
 <a href="#schema-format">schema format</a> (below) for example output.</p>
 <h2 id="supported-data-types">Supported data types<a class="headerlink" href="#supported-data-types" title="Permanent link">&para;</a></h2>
-<p>Lightbus maps Python types to JSON types. While Python-specific values can be sent using Lightbus, 
+<p>Lightbus maps Python types to JSON types. While Python-specific values can be sent using Lightbus,
 these values will arrive in their JSON form. For example, if you send a <code>string</code> then a <code>string</code> will arrive.
 However, if you send the <code>Decimal</code> value <code>3.124</code>, then you will receive the <code>string</code> value <code>3.124</code> instead.</p>
 <p>The following types are reasonably interoperable:</p>
@@ -824,15 +838,15 @@ However, if you send the <code>Decimal</code> value <code>3.124</code>, then you
 </tbody>
 </table>
 <h2 id="automatic-validation">Automatic validation<a class="headerlink" href="#automatic-validation" title="Permanent link">&para;</a></h2>
-<p>By default this validation will be validated in both the 
-incoming and outgoing directions. Outgoing refers to 
+<p>By default this validation will be validated in both the
+incoming and outgoing directions. Outgoing refers to
 the dispatching of events or procedure calls to the bus.
-Incoming refers to the processing of procedure calls or 
+Incoming refers to the processing of procedure calls or
 handling of received events.</p>
-<p>You can configuring this using the <code>validate</code> 
+<p>You can configuring this using the <code>validate</code>
 <a href="../configuration/">configuration</a> option.</p>
 <h3 id="validation-configuration">Validation configuration<a class="headerlink" href="#validation-configuration" title="Permanent link">&para;</a></h3>
-<p>You can configure the validation behaviour in your 
+<p>You can configure the validation behaviour in your
 bus' <code>config.yaml</code>.</p>
 <h4 id="validate-bool-true"><code>validate (bool) = true</code><a class="headerlink" href="#validate-bool-true" title="Permanent link">&para;</a></h4>
 <p>You can enable/disable validation using a boolean true/false flag:</p>
@@ -842,7 +856,7 @@ bus' <code>config.yaml</code>.</p>
         <span class="nv">validate: </span><span class="kc">false</span>
 </pre></div>
 
-<p>For finer grained control you can specify individual flags for incoming/outgoing 
+<p>For finer grained control you can specify individual flags for incoming/outgoing
 validation:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># In config.yaml</span>
 <span class="nv">apis:</span>
@@ -853,7 +867,7 @@ validation:</p>
 </pre></div>
 
 <h4 id="strict_validation-bool-false"><code>strict_validation (bool) = false</code><a class="headerlink" href="#strict_validation-bool-false" title="Permanent link">&para;</a></h4>
-<p>If <code>strict_validation</code> is <code>true</code> then calling a procedure for which no schema exists will 
+<p>If <code>strict_validation</code> is <code>true</code> then calling a procedure for which no schema exists will
 result in an error:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># In config.yaml</span>
 <span class="nv">apis:</span>
@@ -894,7 +908,7 @@ result in an error:</p>
     <span class="nt">&quot;rpcs&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;get_user&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="err">//</span> <span class="err">A</span> <span class="err">single</span> <span class="err">required</span> <span class="err">username</span> <span class="err">string</span> <span class="err">parameter</span> 
+          <span class="err">//</span> <span class="err">A</span> <span class="err">single</span> <span class="err">required</span> <span class="err">username</span> <span class="err">string</span> <span class="err">parameter</span>
           <span class="nt">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-04/schema#&quot;</span><span class="p">,</span>
           <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;RPC auth.get_user() parameters&quot;</span><span class="p">,</span>
           <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span>
@@ -936,16 +950,42 @@ result in an error:</p>
 <span class="p">}</span>
 </pre></div>
 
+<h3 id="dataclasses">Dataclasses<a class="headerlink" href="#dataclasses" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.python.org/dev/peps/pep-0557/">Dataclasses</a>
+were introduced in Python 3.7, with a
+<a href="https://pypi.org/project/dataclasses/">backport available</a> for
+Python 3.6.</p>
+<p>Lightbus supports dataclasses in the same way as it supports
+<a href="#named-tuples">named tuples</a>. For example:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># bus.py</span>
+<span class="kn">from</span> <span class="nn">lightbus</span> <span class="k">import</span> <span class="n">Api</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="k">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">is_admin</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">class</span> <span class="nc">AuthApi</span><span class="p">(</span><span class="n">Api</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;auth&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+
 <h3 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h3>
 <p>The same can be achieved using regular classes. However, there are some notable points:</p>
 <ol>
 <li>Attributes prefixed with an underscore will be ignored</li>
 <li>If used as a type hint for a parameter, then the class .... wait, will a json object get deserialised into a python object?
    NO, this only happens in the config. I think you'll just get a dict for a parameter value
-TODO </li>
+TODO</li>
 </ol>
 <div class="codehilite"><pre><span></span><span class="nx">from</span> <span class="nx">lightbus</span> <span class="nx">import</span> <span class="nx">Api</span>
-<span class="nx">from</span> <span class="nx">typing</span> <span class="nx">import</span> <span class="nx">NamedTuple</span>
 
 
 <span class="k">class</span> <span class="nx">User</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span><span class="o">:</span>
@@ -953,7 +993,8 @@ TODO </li>
     <span class="nv">name: </span><span class="nx">str</span>
     <span class="nv">email: </span><span class="nx">str</span>
     <span class="nv">is_admin: bool = </span><span class="nx">False</span>
-    <span class="nv">_internal_value: </span><span class="nx">str</span>  <span class="c1"># ignored</span>
+    <span class="c1"># private attributes are ignored</span>
+    <span class="nv">_internal_value: str = </span><span class="s">&#39;&#39;</span>
 
     <span class="nx">def</span> <span class="nx">do_something</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
         <span class="nx">pass</span>
@@ -968,8 +1009,8 @@ TODO </li>
 </pre></div>
 
 <h2 id="schema-format">Schema format<a class="headerlink" href="#schema-format" title="Permanent link">&para;</a></h2>
-<p>You won't need to worry about the schema format in your day-to-day use 
-of Lightbus. However, an understanding of the format will be very 
+<p>You won't need to worry about the schema format in your day-to-day use
+of Lightbus. However, an understanding of the format will be very
 useful if you decide to build additional tooling.</p>
 <p>The Lightbus schema format is simply a collection of child JSON Schemas.
 Below is the schema for the example <code>auth</code> API shown above:</p>

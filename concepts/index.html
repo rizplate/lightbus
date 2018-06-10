@@ -296,6 +296,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lightbus-processes" title="Lightbus processes" class="md-nav__link">
+    Lightbus processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-lightbus-processes" title="Non-Lightbus processes" class="md-nav__link">
+    Non-Lightbus processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bus" title="Bus" class="md-nav__link">
     Bus
   </a>
@@ -511,6 +525,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lightbus-processes" title="Lightbus processes" class="md-nav__link">
+    Lightbus processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-lightbus-processes" title="Non-Lightbus processes" class="md-nav__link">
+    Non-Lightbus processes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bus" title="Bus" class="md-nav__link">
     Bus
   </a>
@@ -566,39 +594,71 @@
                 
                   <h1>Concepts</h1>
                 
-                <h2 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
-<p>Throughout this documentation we use the term <em>service</em> 
+                <p>Lightbus allows processes to communicate through a
+central medium, and has out-of-the-box support for Redis.
+This can be done using any combination of RPCs or events.</p>
+<p>We'll describe these concepts and their relationships in
+more detail below.</p>
+<h2 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h2>
+<p>Throughout this documentation we use the term <em>service</em>
 to refer to one or more processes handling a common task.
 These processes operate as a tightly-coupled whole.</p>
-<p>For example, your company may run a help desk 
-(e.g <code>support.company.com</code>) , an online store (<code>store.company.com</code>), 
-and an internal image resizing service (<code>img.cluster.local</code>).
-This documentation would consider each of these a service.</p>
-<p>The support and store services would probably have both a web process and a 
-Lightbus process each. The image resizing service would likely have a Lightbus 
+<p>For example, your company may run a help desk
+(e.g <code>support.company.com</code>) , an online store (<code>store.company.com</code>),
+and an internal image resizing service.
+This documentation considers each of these to be a 'service'.</p>
+<p>The support and store services would likely have both a web process and a
+Lightbus process each. The image resizing service would likely have a Lightbus
 process only.</p>
+<p>All processes in a service should generally share the same API class
+definitions.</p>
+<p>A simple lightbus deployment could look something like this:</p>
+<p><img alt="A simple Lightbus deployment" src="../static/images/simple-processes.png" /></p>
+<h2 id="lightbus-processes">Lightbus processes<a class="headerlink" href="#lightbus-processes" title="Permanent link">&para;</a></h2>
+<p>A Lightbus process is started with the <code>lightbus run</code> command.
+A Lightbus process typically waits for any bus activity
+and responds accordingly.</p>
+<p>Lightbus processes are therefore concerned with:</p>
+<ul>
+<li>Listening for events</li>
+<li>Responding to remote procedure calls</li>
+</ul>
+<p>In handling either of these, the Lightbus process may fire
+additional events or call other RPCs.</p>
+<p>A service may have zero-or-more Lightbus processes. <strong>A service
+will only need a Lightbus process if it wishes to listen
+for events or provide any RPCs which can be called.</strong></p>
+<h2 id="non-lightbus-processes">Non-Lightbus processes<a class="headerlink" href="#non-lightbus-processes" title="Permanent link">&para;</a></h2>
+<p>A web server would be a typical example of a non-Lightbus process
+(e.g. Flask or Django). These processes can still interact with the
+bus, but will typically do so briefly as part of their other duties.</p>
+<p>Non-Lightbus process are therefore concerned with:</p>
+<ul>
+<li>Firing events</li>
+<li>Calling RPCs</li>
+</ul>
 <h2 id="bus">Bus<a class="headerlink" href="#bus" title="Permanent link">&para;</a></h2>
-<p>In computing, a bus is a shared communication medium. A bus allows any 
-software/hardware connected to that medium to communicate, as long as 
-common rules are obeyed. In this sense a bus is very similar to a conversation 
+<p>In computing, a bus is a shared communication medium. A bus allows any
+software/hardware connected to that medium to communicate, as long as
+common rules are obeyed. In this sense a bus is very similar to a conversation
 between a group of people.</p>
-<p>In electronics the communication medium can be a simple 
-copper cable. In software the communication medium is itself defined 
+<p>In electronics the communication medium can be a simple
+copper cable. In software the communication medium is itself defined
 by software.</p>
-<p>Lightbus uses Redis as its communication medium and provides a 
-simple programming interface to the developer.</p>
+<p><strong>Lightbus uses Redis as its communication medium</strong>, although support
+for other mediums may be added in future.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The core of Lightbus mostly consists of the programming interface
+<p>The core of Lightbus mostly consists of a programming interface
 and presentational nicities.
-The connection with the communication medium is provided by 
-customisable transports (see below). Lightbus ships with transports for Redis, 
+The connection with the communication medium is provided by
+customisable transports (see below). Lightbus ships with transports for Redis,
 but transports could be created for other mediums should you wish.</p>
 </div>
 <h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
 <p>When we refer to an <em>API</em>, we are referring to an <code>Api</code> class definition.
-These class definitions define the functionality available on the bus. 
-For example, consider an API for support cases in the help desk service 
+<strong>All functionlaity on the bus is defined using APIs.</strong></p>
+<p>For example, consider an API for support cases in the help desk service
 mentioned above:</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">SupportCaseApi</span><span class="p">(</span><span class="n">Api</span><span class="p">):</span>
     <span class="n">case_created</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;sender&#39;</span><span class="p">,</span> <span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">))</span>
@@ -610,10 +670,10 @@ mentioned above:</p>
         <span class="k">return</span> <span class="n">get_case_from_db</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
 </pre></div>
 
-<p>This API defines an event, a procedure, and the name used to address the API 
+<p>This API defines an event, a procedure, and the name used to address the API
 on the bus. The help desk service could define multiple additional APIs as needed.</p>
 <h2 id="remote-procedure-calls-rpcs">Remote Procedure Calls (RPCs)<a class="headerlink" href="#remote-procedure-calls-rpcs" title="Permanent link">&para;</a></h2>
-<p>A remote procedure call is where you call a procedure available on the bus. The authoritative 
+<p>A remote procedure call is where you call a procedure available on the bus. The authoritative
 service executes the procedure and you receive the result. This is useful when:</p>
 <ol>
 <li>You require information from a service</li>
@@ -624,19 +684,21 @@ service executes the procedure and you receive the result. This is useful when:<
 <div class="codehilite"><pre><span></span><span class="n">support_case</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">support</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 </pre></div>
 
+<p><strong>RPCs provide at-most-once semantics.</strong></p>
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
-<p>Firing an event will place the event onto the bus and return immediately. No information 
-is provided as to whether the event was processed, or indeed of it was received by any 
+<p>Firing an event will place the event onto the bus and return immediately. No information
+is provided as to whether the event was processed, or indeed of it was received by any
 other service at all. No return value is provided when firing an event.</p>
 <p>This is useful when:</p>
 <ol>
-<li>You wish to allow non-authoritative services to receive information without needing to concern yourself 
+<li>You wish to allow non-authoritative services to receive information without needing to concern yourself
    with their implementation</li>
 <li>You wish the authoritative service to perform a known task in the background</li>
 </ol>
 <p>The <a href="../quick-start/#events">quickstart</a> provides an example of the latter case.</p>
+<p><strong>Events provide at-least-once semantics.</strong></p>
 <h2 id="transports">Transports<a class="headerlink" href="#transports" title="Permanent link">&para;</a></h2>
-<p>Transports provide the communications system for Lightbus. There are four types 
+<p>Transports provide the communications system for Lightbus. There are four types
 of transport:</p>
 <ul>
 <li><strong>RPC transports</strong> – sends and consumes RPC calls</li>
