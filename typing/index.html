@@ -13,7 +13,7 @@
         <meta name="description" content="RPC & event system for Python 3">
       
       
-        <link rel="canonical" href="http://lightbus.org/transports/">
+        <link rel="canonical" href="http://lightbus.org/typing/">
       
       
         <meta name="author" content="Adam Charnock">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Transports - Lightbus</title>
+        <title>Typing - Lightbus</title>
       
     
     
@@ -121,7 +121,7 @@
                 Lightbus
               </span>
               <span class="md-header-nav__topic">
-                Transports
+                Typing
               </span>
             
           
@@ -296,11 +296,18 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../typing/" title="Typing" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="Typing" class="md-nav__link md-nav__link--active">
       Typing
     </a>
+    
   </li>
 
     
@@ -368,18 +375,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-    <a href="./" title="Transports" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../transports/" title="Transports" class="md-nav__link">
       Transports
     </a>
-    
   </li>
 
     
@@ -443,12 +443,46 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/adamcharnock/lightbus/edit/master/docs/transports.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/adamcharnock/lightbus/edit/master/docs/typing.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Transports</h1>
+                  <h1>Typing</h1>
                 
-                <p>TBA</p>
+                <p>Inbound: <code>decode -&gt; deserialise -&gt; cast</code>
+Outbound: <code>deform -&gt; serialize -&gt; encode</code></p>
+<ul>
+<li>Types not transmitted with data</li>
+<li>Validation:<ul>
+<li>Data validated against the schema</li>
+<li>API schemas are shared on the bus</li>
+</ul>
+</li>
+<li>Outbound:<ul>
+<li>Data is encoded as JSON by default</li>
+<li>Therefore all values are transmitted as JSON-safe types</li>
+<li><strong>Deform:</strong> Lightbus handles NamedTuples, dataclasses by converting
+  them into dictionaries. Other common types such as
+  datetimes, Decimals etc are converted into strings.
+  Internally this is referred to as the <em>deform</em> process.</li>
+<li><strong>Serialize:</strong> Structures the data in a way suitable for the
+  transport.</li>
+<li><strong>Encode:</strong> Converts the data to a form suitable for transmission.
+  This typically means stringifying it, for which lightbus
+  uses JSON encoding by default.</li>
+</ul>
+</li>
+<li>Inbound (the reverse of the outbound process)<ul>
+<li><strong>Decode:</strong> JSON decode (by default) the incoming data</li>
+<li><strong>Deserialise:</strong> Convert the data from its bus-level structure</li>
+<li><strong>Cast:</strong> Best effort casting of parameters/results based on the
+  type hinting provided in the calling code.</li>
+</ul>
+</li>
+</ul>
+<p>Cusom objects can be transmitted on the bus as long as they define the
+<code>__to_bus__()</code> magic method. Conversely, custom objects can be recieved
+by providing a type hint for class, where the class defines the
+<code>__from_bus__()</code> method.</p>
                 
                   
                 
@@ -469,7 +503,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../schema/" title="Schema" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../worked-example/" title="Worked example" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -478,19 +512,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Schema
+                Worked example
               </span>
             </div>
           </a>
         
         
-          <a href="../command-line-use/" title="Command line use" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../apis/" title="APIs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Command line use
+                APIs
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
