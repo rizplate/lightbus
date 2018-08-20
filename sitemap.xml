@@ -2,82 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>http://lightbus.org/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/installation/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/tutorial/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/concepts/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/tutorial/installation/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/quick-start/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/tutorial/quick-start/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/worked-example/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/tutorial/worked-example/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/typing/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/howto/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/apis/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/howto/combine-processes/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/rpcs/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/howto/metrics/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/events/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/howto/event-sourcing/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/configuration/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/explanation/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/schema/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/explanation/anatomy-lesson/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://lightbus.org/transports/</loc>
-     <lastmod>2018-07-01</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://lightbus.org/command-line-use/</loc>
-     <lastmod>2018-07-01</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://lightbus.org/debugging/</loc>
-     <lastmod>2018-07-01</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>http://lightbus.org/plugins/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <loc>http://lightbus.org/explanation/concepts/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://lightbus.org/contributing/</loc>
-     <lastmod>2018-07-01</lastmod>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/typing/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/apis/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/rpcs/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/events/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/configuration/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/schema/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/transports/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/command-line-use/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/debugging/</loc>
+     <lastmod>2018-08-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://lightbus.org/reference/plugins/</loc>
+     <lastmod>2018-08-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
